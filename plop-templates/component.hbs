@@ -1,0 +1,18 @@
+import React, { useEffect, useState } from 'react';
+import './{{name}}.scss';
+
+const {{pascalCase name}} = () => {
+  const [title, setTitle] = useState('');
+
+  useEffect(() => {
+    setTitle('{{pascalCase name}}');
+  }, []);
+
+  return (
+    <div className="{{name}}">
+      <h1>Hello {title}</h1>
+    </div>
+  );
+};
+
+export default {{pascalCase name}};

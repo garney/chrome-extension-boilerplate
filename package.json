@@ -1,0 +1,39 @@
+{
+  "name": "chrome-extension-boilerplate",
+  "version": "1.0.0",
+  "description": "Start up a chrome extension. Using React and Parcel to build",
+  "main": "index.js",
+  "scripts": {
+    "copy-manifest": "copyfiles manifest.json dist",
+    "copy-assets": "copyfiles assets/* dist",
+    "clear-dist": "rimraf dist",
+    "build-all": "parcel build src/*.js --no-content-hash src/views/*.html ",
+    "watch-all": "parcel watch src/*.js src/views/*.html",
+    "build": "run-s clear-dist copy-manifest copy-assets build-all",
+    "watch": "run-s copy-manifest copy-assets watch-all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garney/chrome-extension-boilerplate.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/garney/chrome-extension-boilerplate/issues"
+  },
+  "homepage": "https://github.com/garney/chrome-extension-boilerplate#readme",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "local-storage": "^2.0.0",
+    "parcel-bundler": "^1.12.4",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "shortid": "^2.2.15"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.1.1",
+    "npm-run-all": "^4.1.5",
+    "plop": "^2.5.3",
+    "sass": "^1.23.7"
+  }
+}
