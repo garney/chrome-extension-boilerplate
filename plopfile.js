@@ -35,4 +35,59 @@ module.exports = function (plop) {
             return actions;
         }
     });
+
+    plop.setGenerator('setup', {
+        description: 'setup your application',
+        prompts: [
+            {
+                type: 'input',
+                name: 'name',
+                message: 'Extension name?'
+            },
+            {
+                type: 'input',
+                name: 'description',
+                message: 'Description?'
+            }
+            ],
+        actions: function(data) {
+            var addState = {
+                type: 'modify',
+                path: 'src/components/{{name}}/{{name}}.js',
+                pattern: /(-- ADD STATES HERE --)/gi,
+                template: 'test State'
+            };
+            const actions = [];
+
+            let paths = ['package.json', 'manifest.json'];
+
+            paths.forEach(item => {
+                actions.push({
+                    type: 'modify',
+                    path: item,
+                    pattern: /\"name\"\s*:.+?,/gi,
+                    template: '"name": "{{name}}",'
+                })
+            });
+
+            paths.forEach(item => {
+                actions.push({
+                    type: 'modify',
+                    path: item,
+                    pattern: /\"description\"\s*:.+?,/gi,
+                    template: '"description": "{{description}}",'
+                })
+            });
+
+
+            actions.push({
+                type: 'modify',
+                path: 'src/background.js',
+                pattern: /'starting\s+.+?'/gi,
+                template: '\'Starting {{name}}\''
+            });
+
+            return actions;
+        }
+    });
 };

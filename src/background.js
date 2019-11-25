@@ -1,5 +1,7 @@
 import "@babel/polyfill";
 import Helper from './helpers/chrome-helper';
+
+console.log('starting chrome-extension');
 //
 // import axios from 'axios';
 //
