@@ -1,5 +1,7 @@
+const path = require('path');
 module.exports = function (plop) {
 
+    const dirName = __dirname.split(path.sep).pop();
     plop.addPartial('greeting', 'Hello, my name is {{ properCase name }} .');
 
     plop.setGenerator('component', {
@@ -7,7 +9,7 @@ module.exports = function (plop) {
         prompts: [{
             type: 'input',
             name: 'name',
-            message: 'components name please'
+            message: `components name please`
         }, {
             type: 'confirm',
             name: 'hasState',
@@ -42,7 +44,7 @@ module.exports = function (plop) {
             {
                 type: 'input',
                 name: 'name',
-                message: 'Extension name?'
+                message: `Extension name (${dirName})?`
             },
             {
                 type: 'input',
@@ -57,12 +59,7 @@ module.exports = function (plop) {
             }
             ],
         actions: function(data) {
-            var addState = {
-                type: 'modify',
-                path: 'src/components/{{name}}/{{name}}.js',
-                pattern: /(-- ADD STATES HERE --)/gi,
-                template: 'test State'
-            };
+            const folderName = data.name || dirName;
             const actions = [];
 
             let paths = ['package.json', 'manifest.json'];
@@ -72,7 +69,7 @@ module.exports = function (plop) {
                     type: 'modify',
                     path: item,
                     pattern: /\"name\"\s*:.+?,/gi,
-                    template: '"name": "{{name}}",'
+                    template: `"name": "${folderName}",`
                 })
             });
 
@@ -90,7 +87,7 @@ module.exports = function (plop) {
                 type: 'modify',
                 path: 'manifest.json',
                 pattern: /\"default_title\"\s*:.+?,/gi,
-                template: '"default_title": "{{name}}",'
+                template: `"default_title": "${folderName}",`
             });
 
 
@@ -106,7 +103,7 @@ module.exports = function (plop) {
                 type: 'modify',
                 path: 'src/background.js',
                 pattern: /'starting\s+.+?'/gi,
-                template: '\'Starting {{name}}\''
+                template: `\'Starting ${folderName}\'`
             });
 
             return actions;
