@@ -48,6 +48,12 @@ module.exports = function (plop) {
                 type: 'input',
                 name: 'description',
                 message: 'Description?'
+            },
+            {
+                type: 'list',
+                name: 'chromeAction',
+                message: 'Extension action?',
+                choices: ['browser', 'page']
             }
             ],
         actions: function(data) {
@@ -77,6 +83,22 @@ module.exports = function (plop) {
                     pattern: /\"description\"\s*:.+?,/gi,
                     template: '"description": "{{description}}",'
                 })
+            });
+
+
+            actions.push({
+                type: 'modify',
+                path: 'manifest.json',
+                pattern: /\"default_title\"\s*:.+?,/gi,
+                template: '"default_title": "{{name}}",'
+            });
+
+
+            actions.push({
+                type: 'modify',
+                path: 'manifest.json',
+                pattern: /browser_action/gi,
+                template: '{{data.chromeAction}}_action'
             });
 
 

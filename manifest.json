@@ -19,7 +19,7 @@
   "options_page": "views/options.html",
   "browser_action": {
     "default_icon": "assets/monitor.png",
-    "default_title": "chrome-extention",      // optional; shown in tooltip
+    "default_title": "chrome-extension",      // optional; shown in tooltip
     "default_popup": "views/popup.html"        // optional
   }
 }
