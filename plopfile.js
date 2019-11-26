@@ -98,7 +98,7 @@ module.exports = function (plop) {
                 type: 'modify',
                 path: 'manifest.json',
                 pattern: /browser_action/gi,
-                template: '{{data.chromeAction}}_action'
+                template: `${data.chromeAction}_action`
             });
 
 
