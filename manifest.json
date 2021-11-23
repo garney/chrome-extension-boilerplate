@@ -2,10 +2,9 @@
   "name": "chrome-extention",
   "version": "0.1",
   "description": "",
-  "permissions": ["declarativeContent", "storage", "input"],
+  "permissions": ["declarativeContent", "storage", "tabs"],
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "service_worker": "background.js"
   },
   "content_scripts": [
     {
@@ -15,9 +14,9 @@
       "js": ["content.js"]
     }
   ],
-  "manifest_version": 2,
+  "manifest_version": 3,
   "options_page": "views/options.html",
-  "browser_action": {
+  "action": {
     "default_icon": "assets/monitor.png",
     "default_title": "chrome-extension",      // optional; shown in tooltip
     "default_popup": "views/popup.html"        // optional
