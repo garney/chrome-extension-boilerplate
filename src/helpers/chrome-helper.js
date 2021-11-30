@@ -134,6 +134,7 @@ if(chrome.runtime.onMessage) {
                     listeners[prop](data, sender, sendResponse);
                 }
             }
+            return true;
         });
 }
 
